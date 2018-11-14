@@ -1,0 +1,20 @@
+.card-title{
+  background: #f6f6f6;
+  overflow: auto;
+}
+.card-contain{
+  background: white;
+}
+
+:host ::ng-deep .my-card-title{
+  padding: 15px;
+  margin: 0;
+  font-size: 18px;
+  font-weight: normal;
+  color: #434343;
+}
+
+.card-body{
+  overflow: visible;
+  padding: 15px;
+}

@@ -3,14 +3,36 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MyLoginComponent } from './my-login/my-login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MyHeaderComponent } from './my-header/my-header.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
+import { MyCardComponent } from './my-card/my-card.component';
+import {MatInputModule} from '@angular/material/input';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatAutocompleteModule, MatButtonModule} from '@angular/material';
+
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MyLoginComponent,
+    MyHeaderComponent,
+    MyCardComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatCardModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatAutocompleteModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
