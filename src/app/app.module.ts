@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MyLoginComponent } from './my-login/my-login.component';
@@ -12,6 +13,9 @@ import { MyCardComponent } from './my-card/my-card.component';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule, MatButtonModule} from '@angular/material';
+import {StoreModule} from '@ngrx/store';
+
+import { counterReducer } from './store/reducer';
 
 
 
@@ -32,7 +36,8 @@ import {MatAutocompleteModule, MatButtonModule} from '@angular/material';
     ReactiveFormsModule,
     FormsModule,
     MatAutocompleteModule,
-    MatButtonModule
+    MatButtonModule,
+    StoreModule.forRoot({count: counterReducer})
   ],
   providers: [],
   bootstrap: [AppComponent]
