@@ -3,7 +3,7 @@ import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/form
 import {ErrorStateMatcher} from '@angular/material/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Increment, Decrement, Reset } from '../store/actions';
+import {Increment, Decrement, Reset, Login} from '../store/actions';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -20,7 +20,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class MyLoginComponent implements OnInit {
 
-  count$: Observable<number>;
+  store$: Observable<number>;
 
 
   emailFormControl = new FormControl('', [
@@ -36,12 +36,25 @@ export class MyLoginComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
   login () {
-    console.log(this.passwdFormControl.value);
+    // // console.log(this.emailFormControl);
+    // if ( this.emailFormControl.invalid ) {
+    //   // this.emailFormControl
+    //   // TODO: 使表单获取焦点
+    //   return false;
+    // }
+    //
+    // if ( this.passwdFormControl.invalid ) {
+    //   // TODO: 使表单获取焦点
+    //   return false;
+    // }
+
+    this.store.dispatch(new Login({email: this.emailFormControl.value, passwd: this.passwdFormControl.value }));
   }
 
   constructor(private store: Store<{ count: number}>) {
-    this.count$ = this.store.pipe(select('count'));
+    this.store$ = this.store.pipe(select('store'));
     this.reset();
+    // this.store.dispatch(new Login({passwd: `1234`, email: `qe-d@163.com`}));
     // this.increment();
     // console.log(this.store);
   }

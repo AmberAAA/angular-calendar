@@ -22,7 +22,12 @@ export class Reset implements Action {
 
 export class Login implements Action {
   readonly type = ActionTypes.Login;
-  constructor (public payload: {email: string, passwd: string}) {}
+  constructor (public payload: {email: string, passwd: string}) {
+    console.log(this.payload.email);
+    console.log(this.payload.passwd);
+    // TODO: success login and return _id
+
+  }
 }
 
-export type Union = Login;
+export type Union = Login | Reset | Decrement | Increment;

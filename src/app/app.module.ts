@@ -17,6 +17,8 @@ import {StoreModule} from '@ngrx/store';
 
 import { counterReducer } from './store/reducer';
 
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -37,7 +39,11 @@ import { counterReducer } from './store/reducer';
     FormsModule,
     MatAutocompleteModule,
     MatButtonModule,
-    StoreModule.forRoot({count: counterReducer})
+    StoreModule.forRoot({store: counterReducer}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

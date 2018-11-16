@@ -1,5 +1,5 @@
 <app-my-card class="app-my-login">
-  <p  class="my-card-title">登录/注册  {{ count$ | async }}</p>
+  <p  class="my-card-title">登录/注册  {{ (store$ | async).home }}</p>
   <div class="my-card-body">
     <form class="example-form">
       <mat-form-field class="example-full-width">
@@ -30,7 +30,7 @@
     </form>
   </div>
   <div class="my-card-footer">
-    <button mat-raised-button color="primary" (click)="decrement()">登录</button>
+    <button mat-raised-button color="primary" (click)="login()">登录</button>
     <button mat-raised-button (click)="increment()">注册</button>
   </div>
 </app-my-card>
