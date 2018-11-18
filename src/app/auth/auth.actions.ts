@@ -1,11 +1,14 @@
 import { Action } from '@ngrx/store';
+import { Certificate } from './modules/auth';
 
 export enum AuthActionTypes {
-  LoadAuths = '[Auth] Load Auths'
+  Login = '[Auth] Login'
 }
 
-export class LoadAuths implements Action {
-  readonly type = AuthActionTypes.LoadAuths;
+export class Login implements Action {
+  readonly type = AuthActionTypes.Login;
+
+  constructor (public payload: Certificate) {}
 }
 
-export type AuthActions = LoadAuths;
+export type AuthActions = Login;

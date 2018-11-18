@@ -7,6 +7,8 @@ import { AuthRoutingModule } from './auth-routing.module';
 import {MatAutocompleteModule, MatButtonModule, MatInputModule, MatToolbarModule} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MyCardComponent } from '../share/compont/my-card/my-card.component';
+import { reducer} from './auth.reducer';
+import {StoreModule} from '@ngrx/store';
 
 @NgModule({
   declarations: [AuthContainerComponent, MyLoginComponent, LogoutComponent, MyCardComponent],
@@ -18,7 +20,8 @@ import { MyCardComponent } from '../share/compont/my-card/my-card.component';
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    StoreModule.forRoot({auth: reducer})
   ]
 })
 export class AuthModule { }
