@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MyLoginComponent } from './my-login/my-login.component';
+import { MyLoginComponent } from './view/my-login/my-login.component';
 
-const routes: Routes = [
-  {path: 'login', component: MyLoginComponent}
-];
+const routes: Routes = [];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

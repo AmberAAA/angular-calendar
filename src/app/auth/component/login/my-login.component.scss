@@ -1,0 +1,23 @@
+.app-my-login{
+  width: 400px;
+  display: block;
+  position: absolute;
+  left: calc(50% - 200px);
+  top: 100px;
+}
+.example-full-width{
+  width: 100%;
+  margin: 15px 0;
+}
+
+.my-card-footer{
+  padding: 0 15px 15px 15px;
+  display: flex;
+  flex-direction: row-reverse;
+  button{
+    display: block;
+  }
+  button + button {
+    margin-right: 20px;
+  }
+}
