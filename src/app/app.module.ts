@@ -14,6 +14,7 @@ import {MatInputModule} from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule, MatButtonModule} from '@angular/material';
 import {StoreModule} from '@ngrx/store';
+import { HttpClientModule } from '@angular/common/http';
 
 import { counterReducer } from './store/reducer';
 
@@ -39,6 +40,7 @@ import { environment } from '../environments/environment';
     FormsModule,
     MatAutocompleteModule,
     MatButtonModule,
+    HttpClientModule,
     StoreModule.forRoot({store: counterReducer}),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

@@ -1,5 +1,7 @@
 import { Action } from '@ngrx/store';
 import {Log} from '@angular/core/testing/src/logger';
+import { ServeService } from '../serve.service';
+import { HttpClient } from '@angular/common/http';
 
 export enum ActionTypes {
   Increment = '[Counter Component] Increment',
@@ -23,10 +25,6 @@ export class Reset implements Action {
 export class Login implements Action {
   readonly type = ActionTypes.Login;
   constructor (public payload: {email: string, passwd: string}) {
-    console.log(this.payload.email);
-    console.log(this.payload.passwd);
-    // TODO: success login and return _id
-
   }
 }
 
