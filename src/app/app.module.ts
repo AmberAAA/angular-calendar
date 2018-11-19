@@ -20,6 +20,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 
 import { AuthModule } from './auth/auth.module';
+import {EffectsModule} from '@ngrx/effects';
+import { AuthEffects } from './auth/auth.effects';
 
 
 @NgModule({
@@ -42,6 +44,8 @@ import { AuthModule } from './auth/auth.module';
     MatButtonModule,
     HttpClientModule,
     AuthModule,
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([AuthEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production

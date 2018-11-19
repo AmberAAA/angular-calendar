@@ -21,7 +21,7 @@ import {StoreModule} from '@ngrx/store';
     MatAutocompleteModule,
     MatButtonModule,
     MatInputModule,
-    StoreModule.forRoot({auth: reducer})
+    StoreModule.forFeature('auth', reducer)
   ]
 })
 export class AuthModule { }

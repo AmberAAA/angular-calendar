@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 import {select, Store} from '@ngrx/store';
-import {Login} from '../../auth.actions';
+import {AuthActionTypes, Login, SignUp} from '../../auth.actions';
 import {Observable, Observer} from 'rxjs';
 import {Certificate} from '../../modules/auth';
-import { State } from '../../auth.reducer';
+import { State, selectCertificate, my } from '../../auth.reducer';
+import {map} from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -36,13 +38,20 @@ export class MyLoginComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
-  add () {
+  login () {
     this.store.dispatch(new Login({email: this.emailFormControl.value, passwd: this.passwdFormControl.value}));
   }
 
-  constructor(public store: Store<State>) {
+  signUp () {
+    // this.store.dispatch(new SignUp({email: this.emailFormControl.value, passwd: this.passwdFormControl.value}));
+    this.http.post('http://localhost:8080/api/login', {email: this.emailFormControl.value, passwd: this.passwdFormControl.value})
+    .subscribe(e => {console.log(e)} );
+  }
+
+  constructor(public store: Store<State>,
+              private http: HttpClient) {
     this.certificate$ = this.store.pipe(
-      select('auth', 'certificate'),
+      my
     );
     this.certificate$.subscribe(e => {
       console.log(e);
