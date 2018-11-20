@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 import {select, Store} from '@ngrx/store';
 import {AuthActionTypes, Login, SignUp} from '../../auth.actions';
@@ -31,6 +31,10 @@ export class MyLoginComponent implements OnInit {
     Validators.email,
   ]);
 
+  // authForm = new FormGroup({
+  //   eamil:
+  // });
+
   passwdFormControl = new FormControl('', [
     Validators.required,
     Validators.max(3),
@@ -43,9 +47,9 @@ export class MyLoginComponent implements OnInit {
   }
 
   signUp () {
-    // this.store.dispatch(new SignUp({email: this.emailFormControl.value, passwd: this.passwdFormControl.value}));
-    this.http.post('http://localhost:8080/api/login', {email: this.emailFormControl.value, passwd: this.passwdFormControl.value})
-    .subscribe(e => {console.log(e)} );
+    this.store.dispatch(new SignUp({email: this.emailFormControl.value, passwd: this.passwdFormControl.value}));
+    // this.http.post('http://anborong.live:9000/api/login', {email: this.emailFormControl.value, passwd: this.passwdFormControl.value})
+    // .subscribe(e => {console.log(e)} );
   }
 
   constructor(public store: Store<State>,
