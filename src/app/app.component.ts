@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {fromEvent, interval, Observable, Observer, timer} from 'rxjs';
-import {count, map, scan, throttleTime} from 'rxjs/operators';
+import {fromEvent, interval, Observable, Observer, range, timer} from 'rxjs';
+import {count, filter, map, scan, throttleTime} from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
     fromEvent(document.querySelector('#button_2'), 'click')
       .pipe(
         throttleTime(1000),
-        map(e => event.clientX),
+        map(event => event.clientX),
         scan((count, X) => count + X, 0)
       )
       .subscribe((count) => console.log(`click ${count} pt`));
@@ -40,14 +40,20 @@ export class AppComponent implements OnInit {
     // ! 使用interval可以达成一致的效果
     const Timer = interval(1000);
 
-    const timer = Timer.subscribe((e) => {
+    const timers = Timer.subscribe((e) => {
       console.log(e);
     });
 
-    setTimeout(() => { timer.unsubscribe(); }, 4000);
+    setTimeout(() => { timers.unsubscribe(); }, 4000);
 
+    const source$ = range(0, 1000);
 
-
+    source$.pipe(
+      filter(source => source < 7 && source > 4 ),
+      map( x => x + x),
+      scan((acc, x) => acc + x, 0)
+    )
+      .subscribe(e => console.log(`${e}`));
 
   }
 
