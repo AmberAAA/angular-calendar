@@ -1,36 +1,35 @@
-<app-my-card class="app-my-login">
-  <p  class="my-card-title">登录/注册  {{(certificate$ | async)?.email}}</p>
+<div class="login-part">
+  <mat-progress-bar mode="indeterminate" class="progress-bar" *ngIf="padding" ></mat-progress-bar>
+  <p  class="my-card-title">登录/注册</p>
   <div class="my-card-body">
-    <form class="example-form">
+    <form class="example-form" disabled="true" [formGroup]="authForm" (ngSubmit)="login()">
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Email"
-               [formControl]="emailFormControl"
+               formControlName="email"
                [errorStateMatcher]="matcher">
-<!--        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let option of emails" [value]="option">
-            {{option}}
-          </mat-option>
-        </mat-autocomplete>-->
-        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        <mat-error *ngIf="authForm.controls['email'].hasError('email') && !authForm.controls['email'].hasError('required')">
           邮箱格式不正确
         </mat-error>
-        <mat-error *ngIf="emailFormControl.hasError('required')">
+        <mat-error *ngIf="authForm.controls['email'].hasError('required')">
           请填写邮箱
         </mat-error>
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <input matInput placeholder="密码"
                type="password"
-               [formControl]="passwdFormControl"
-               [errorStateMatcher]="matcher">
-        <mat-error *ngIf="emailFormControl.hasError('required')">
+               formControlName="passwd"
+               [errorStateMatcher]="matcher"
+        >
+        <mat-error *ngIf="authForm.controls['passwd'].hasError('required')">
           请填写密码
         </mat-error>
       </mat-form-field>
+      <div class="mess-contain"><p class="mat-error errormsg" role="alert" [@showHidden]="errorMsg ? 'show' : 'hidden' ">{{errorMsg}}</p></div>
+      <div class="my-card-footer">
+        <button mat-raised-button [disabled]="padding"  color="primary" type="submit" >登录</button>
+        <button mat-raised-button [disabled]="padding"  (click)="signUp()">注册</button>
+      </div>
     </form>
   </div>
-  <div class="my-card-footer">
-    <button mat-raised-button color="primary" (click)="login()">登录</button>
-    <button mat-raised-button (click)="signUp()">注册</button>
-  </div>
-</app-my-card>
+</div>
+

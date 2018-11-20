@@ -44,6 +44,7 @@ import { AuthEffects } from './auth/auth.effects';
     MatButtonModule,
     HttpClientModule,
     AuthModule,
+    BrowserAnimationsModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([AuthEffects]),
     StoreDevtoolsModule.instrument({

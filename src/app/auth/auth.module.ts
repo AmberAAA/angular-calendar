@@ -4,7 +4,7 @@ import { AuthContainerComponent } from './auth-container.component';
 import { MyLoginComponent } from './component/login/my-login.component';
 import { LogoutComponent } from './component/logout/logout.component';
 import { AuthRoutingModule } from './auth-routing.module';
-import {MatAutocompleteModule, MatButtonModule, MatInputModule, MatToolbarModule} from '@angular/material';
+import {MatAutocompleteModule, MatButtonModule, MatInputModule, MatProgressBarModule, MatToolbarModule} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MyCardComponent } from '../share/compont/my-card/my-card.component';
 import { reducer} from './auth.reducer';
@@ -20,6 +20,7 @@ import {StoreModule} from '@ngrx/store';
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatButtonModule,
+    MatProgressBarModule,
     MatInputModule,
     StoreModule.forFeature('auth', reducer)
   ]

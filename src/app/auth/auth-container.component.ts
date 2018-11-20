@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-auth-container',
   template: `
     <mat-toolbar class="title" color="primary" role="heading">
-      <span>Login</span>
+      <span>登录/注册</span>
     </mat-toolbar>
     <app-my-login></app-my-login>
   `,

@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import {Actions, Effect, ofType} from '@ngrx/effects';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
-import {Action} from '@ngrx/store';
+import {Action, Store} from '@ngrx/store';
 import {catchError, filter, map, mergeMap} from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import { AuthActionTypes } from './auth.actions';
 import {Certificate} from './modules/auth';
+import {State} from './auth.reducer';
 
 
 const httpOptions = {
@@ -33,7 +34,7 @@ export class AuthEffects {
         }),
         catchError( e => of({type: AuthActionTypes.LoginFailed, payload: '服务器错误！'}))
       )
-    )
+    ),
   );
 
   @Effect()
@@ -42,21 +43,32 @@ export class AuthEffects {
     mergeMap((action: Action) =>
       // @ts-ignore
       this.http.post('http://anborong.live:9000/api/login', action.payload, httpOptions).pipe(
-        map((data: {state: number, data: any}) => {
+        map((data: { state: number, data: any, message: string }) => {
           if ( data.state === 0 ) {
             return { type: AuthActionTypes.LoginSuccess, payload: data.data };
-          } else if ( data.state === 1 ) {
-            return { type: AuthActionTypes.LoginFailed, payload: '账号或密码错误！' };
           } else {
-            return { type: AuthActionTypes.LoginFailed, payload: '服务器错误！' };
+            return { type: AuthActionTypes.LoginFailed, payload: data.message };
           }
         })
       )
     )
   );
 
+  @Effect()
+  padding_on$: Observable<Action> = this.actions$.pipe(
+    ofType(AuthActionTypes.Login, AuthActionTypes.SignUp),
+    mergeMap(() => of({type: AuthActionTypes.LoginPadding, payload: true}))
+  );
+
+  @Effect()
+  padding_off$: Observable<Action> = this.actions$.pipe(
+    ofType(AuthActionTypes.LoginSuccess, AuthActionTypes.LoginFailed),
+    mergeMap(() => of({type: AuthActionTypes.LoginPadding, payload: false}))
+  );
+
 
   constructor(private actions$: Actions,
-              private http: HttpClient
+              private http: HttpClient,
+              private store: Store<State>
   ) {}
 }
