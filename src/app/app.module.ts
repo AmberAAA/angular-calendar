@@ -20,6 +20,7 @@ import { environment } from '../environments/environment';
 import { AuthModule } from './auth/auth.module';
 import {EffectsModule} from '@ngrx/effects';
 import { AuthEffects } from './auth/auth.effects';
+import {TodoModule} from './todo/todo.module';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { AuthEffects } from './auth/auth.effects';
     MatButtonModule,
     HttpClientModule,
     AuthModule,
+    TodoModule,
     BrowserAnimationsModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([AuthEffects]),
