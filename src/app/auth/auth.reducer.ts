@@ -37,9 +37,6 @@ export const select_errorMsg = createSelector(
   select((state: State) => state.errorMsg)
 )
 
-// export const selectFeature = createFeatureSelector<{}, State> (
-//   ''
-// )
 
 export function reducer(state = initialState, action: AuthActions): State {
   switch (action.type) {

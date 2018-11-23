@@ -4,10 +4,10 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {Action, Store} from '@ngrx/store';
 import {catchError, filter, map, mergeMap} from 'rxjs/operators';
-import { AuthService } from './auth.service';
 import { AuthActionTypes } from './auth.actions';
-import {Certificate} from './modules/auth';
 import {State} from './auth.reducer';
+import { environment } from '../../environments/environment';
+
 
 
 const httpOptions = {
@@ -22,7 +22,7 @@ export class AuthEffects {
     ofType(AuthActionTypes.Login),
     mergeMap(action =>
       // @ts-ignore
-      this.http.get('http://anborong.live:9000/api/login', {params: action.payload}).pipe(
+      this.http.get(`${environment.host}/api/login`, {params: action.payload}).pipe(
         map((data: {state: number, data: {}}) => {
           if ( data.state === 0 ) {
             return { type: AuthActionTypes.LoginSuccess, payload: data.data };
@@ -42,7 +42,7 @@ export class AuthEffects {
     ofType(AuthActionTypes.SignUp),
     mergeMap((action: Action) =>
       // @ts-ignore
-      this.http.post('http://anborong.live:9000/api/login', action.payload, httpOptions).pipe(
+      this.http.post(`${environment.host}/api/login`, action.payload, httpOptions).pipe(
         map((data: { state: number, data: any, message: string }) => {
           if ( data.state === 0 ) {
             return { type: AuthActionTypes.LoginSuccess, payload: data.data };

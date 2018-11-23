@@ -1,0 +1,16 @@
+<h1> 键盘事件 </h1>
+<label for=""><input type="text" (click)="onClick($event)" (input)="onInput($event)" (keydown)="keydown($event)"></label>
+<p>clickMsg:  {{clickMsg}}</p>
+<p>inputMsg:  {{inputMsg}}</p>
+<p>keyMsg:  {{keyMsg}}</p>
+
+<h1> 分离原则 </h1>
+
+<p>模板（用户看到的）和组件（应用如何处理用户数据）之间的分离关注原则。</p>
+
+<label for=""><input type="text" (input)="0" #box></label>
+<p>{{box.value}}</p>
+
+
+<h1> NgOnChanges </h1>
+<label for=""><input type="text" [(ngModel)]="demo" ></label>

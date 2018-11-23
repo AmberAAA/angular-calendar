@@ -1,3 +1,4 @@
-<p>
-  index works!
-</p>
+<p *ngFor="let todo of todoList"> {{todo.title}} </p>
+
+<h1>添加TODOLIST</h1>
+<label for="demo1"><input type="text" id="demo1" #title (keyup.enter)="save(title.value)" /></label>

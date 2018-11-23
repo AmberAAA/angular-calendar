@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
     <mat-toolbar class="title" color="primary" role="heading">
       <span>待办事项</span>
     </mat-toolbar>
+    <app-todo-index></app-todo-index>
   `,
   styles: []
 })

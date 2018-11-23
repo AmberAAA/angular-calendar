@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  host: 'http://anborong.live:9000'
+  host: 'http://127.0.0.1:8080'
 };
 
 /*
