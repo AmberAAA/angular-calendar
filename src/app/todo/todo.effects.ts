@@ -12,7 +12,7 @@ export class TodoEffects {
 
   // @Effect()
   // getTodoList$: Observable<Action> = this.actions$.pipe(
-  //   ofType(TodoActionTypes.GetTodoList),
+  //   ofType(TodoActionTypes.SSetTodoList),
   //   mergeMap(() => this.serve.getToDoList())
   // );
 

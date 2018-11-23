@@ -3,18 +3,17 @@ import {Todo} from './module';
 
 export enum TodoActionTypes {
   LoadTodos = '[Todo] Load Todos',
-  GetTodoList = '[Todo] Load Todos'
+  SetTodoList = '[Todo] Set Todos',
 }
 
 export class LoadTodos implements Action {
   readonly type = TodoActionTypes.LoadTodos;
 }
 
-export class GetTodoList implements Action {
-  readonly type = TodoActionTypes.GetTodoList;
+export class SetTodoList implements Action {
+  readonly type = TodoActionTypes.SetTodoList;
 
   constructor (public payload: Todo[]) {}
 }
 
-
-export type TodoActions = LoadTodos | GetTodoList;
+export type TodoActions = LoadTodos | SetTodoList;

@@ -1,4 +1,26 @@
-<p *ngFor="let todo of todoList"> {{todo.title}} </p>
+<div class="contain">
+  <h1>添加TODOLIST</h1>
 
-<h1>添加TODOLIST</h1>
-<label for="demo1"><input type="text" id="demo1" #title (keyup.enter)="save(title.value)" /></label>
+  <label for="input"><input id="input" autocomplete="off" #title (keyup.enter)="saveHandle($event)" placeholder="新建事项 回车保存"/></label>
+
+  <p *ngFor="let todo of todoList" (click)="deleteList(todo._id)"> {{todo.title}} </p>
+
+
+
+  <form action="#" class="from-contain">
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput placeholder="标题">
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea matInput placeholder="备注"></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="添加步骤">
+      </mat-form-field>
+    </div>
+  </form>
+
+</div>

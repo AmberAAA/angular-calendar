@@ -14,13 +14,12 @@ export const initialState: State = {
 export function reducer(state = initialState, action: Action): State {
   switch (action.type) {
 
-    case (TodoActionTypes.GetTodoList): {
+    case (TodoActionTypes.SetTodoList):
       return {
         ...state,
         // @ts-ignore
         todoList: action.payload
       };
-    }
 
     default:
       return state;

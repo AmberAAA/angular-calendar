@@ -20,6 +20,13 @@ export class IndexComponent implements OnInit {
     this.serve.getToDoList();
   }
 
+  saveHandle (event: KeyboardEvent) {
+    const dom = <HTMLInputElement>event.target;
+    this.save(dom.value);
+    dom.value = '';
+    dom.blur();
+  }
+
   save (title) {
     const payload: Todo = {
       title,
@@ -28,6 +35,9 @@ export class IndexComponent implements OnInit {
     };
 
     this.serve.addToDoList(payload);
+  }
 
+  deleteList (_id: string) {
+    this.serve.deleteTodo(_id);
   }
 }
